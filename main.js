@@ -47,4 +47,36 @@
       sec.hidden = !any;
     });
   });
+
+  // Map (MapLibre, loaded on demand)
+  const mapEl = document.querySelector('[data-map]');
+  if (mapEl) {
+    const lib = mapEl.dataset.lib;
+    const addScript = src => new Promise((resolve, reject) => {
+      const js = document.createElement('script');
+      js.src = src;
+      js.onload = resolve;
+      js.onerror = reject;
+      document.head.append(js);
+    });
+    const start = () => {
+      const css = document.createElement('link');
+      css.rel = 'stylesheet';
+      css.href = `${lib}maplibre-gl.css`;
+      document.head.append(css);
+      return addScript(`${lib}maplibre-gl.js`)
+        .then(() => addScript(mapEl.dataset.src))
+        .then(() => window.yumMap(mapEl))
+        // no WebGL or blocked scripts: keep the plain panel with its Directions button
+        .catch(() => mapEl.classList.add('is-failed'));
+    };
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(entries => {
+        if (entries.some(en => en.isIntersecting)) { io.disconnect(); start(); }
+      }, { rootMargin: '400px 0px' });
+      io.observe(mapEl);
+    } else {
+      start();
+    }
+  }
 })();

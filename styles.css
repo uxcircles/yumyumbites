@@ -245,9 +245,24 @@ section h2 { font-size: clamp(32px, 4.2vw, 50px); }
 .facts .status { font-size: 15px; margin-top: 4px; color: var(--ink-2); }
 .social { margin-top: 28px; color: var(--ink-2); }
 .social a { font-weight: 700; color: var(--green); text-underline-offset: 3px; }
-.visit-map iframe { width: 100%; aspect-ratio: 4 / 3; border: 0; border-radius: var(--radius); background: var(--line); }
-.map-credit { font-size: 12px; color: var(--ink-2); margin-top: 8px; }
-@media (max-width: 860px) { .visit-inner { grid-template-columns: 1fr; gap: 40px; } .facts div { grid-template-columns: 80px 1fr; } }
+.visit-map { position: relative; aspect-ratio: 4 / 3; border-radius: var(--radius); overflow: hidden; background: var(--line); box-shadow: 10px 10px 0 var(--green); }
+/* .visit-map prefix: maplibre-gl.css loads later and sets the container to position: relative */
+.visit-map .map-canvas { position: absolute; inset: 0; background: var(--cream); font: inherit; }
+.map-link { position: absolute; left: 16px; bottom: 16px; z-index: 5; }
+.map-canvas .maplibregl-ctrl-attrib { font-size: 10px; }
+.map-canvas .maplibregl-ctrl-group { border-radius: 10px; box-shadow: 0 6px 16px -10px rgba(0,0,0,.4); }
+.map-canvas .maplibregl-cooperative-gesture-screen { font-family: var(--f-body); background: rgba(15, 74, 28, .6); }
+.map-pin { display: grid; justify-items: center; cursor: default; }
+.map-pin .pin {
+  display: grid; place-items: center; width: 54px; height: 54px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg);
+  background: var(--green); border: 3px solid #fff; box-shadow: 0 10px 22px -8px rgba(15, 74, 28, .8);
+}
+.map-pin .pin img { width: 42px; height: 42px; border-radius: 50%; transform: rotate(45deg); }
+.map-pin .pin-label {
+  position: absolute; left: 60px; top: 10px; padding: 6px 12px; border-radius: 99px; white-space: nowrap;
+  background: var(--ink); color: var(--cream); font: 600 14px/1.3 var(--f-display); box-shadow: 0 8px 18px -10px rgba(0,0,0,.7);
+}
+@media (max-width: 860px) { .visit-inner { grid-template-columns: 1fr; gap: 40px; } .visit-map { margin-right: 10px; } .facts div { grid-template-columns: 80px 1fr; } }
 
 /* ---------- Footer ---------- */
 .site-footer { background: var(--ink); color: rgba(251,243,228,.8); padding: 48px 0 40px; }
