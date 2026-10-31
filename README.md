@@ -35,11 +35,14 @@ python3 -m http.server 5180
 | 營業時間 | `main.js` 的 `HOURS`，以及模板裡的 JSON-LD、首頁和 Visit 區的文字 |
 | 改了 CSS／JS | 把 `styles.css?v=1`、`main.js?v=1` 的版本號 +1 |
 
-## 上線前待確認
+## 內部筆記
 
-- [ ] **營業時間**：舊網站只顯示「Open today 11:00–21:00」，目前假設每天相同，請店家確認
-- [ ] **Halal**：舊網站寫 Halal Food，但菜單有滷肉飯（豬肉），目前寫「Halal options」，請確認哪些品項是清真
-- [ ] **外送平台**：目前只連到 Deliveroo，如有 Uber Eats / Just Eat 再補
-- [ ] 菜單價格取自舊網站 PDF，Deliveroo 上的價格較高，網站已註明「外送價格可能不同」
-- [ ] 地圖座標取自 OpenStreetMap 的 New Era Square（53.3722, -1.4737），8 號的確切位置請核對
-- [ ] logo 是從舊網站圖片裁切的，正式上線最好拿原始向量檔
+原網站檢視結果、待店家確認事項和 pitch 資料放在本機的 `.private/`（已被 `.gitignore` 排除，不會進 git）。
+
+第一次 clone 後啟用 git hooks：
+
+```
+git config core.hooksPath .githooks
+```
+
+之後每次 commit / push 會擋下 `.private/` 的檔案和 `.private/blocklist.txt` 裡的敏感字詞，並列出 `.private/NOTES.md` 裡未完成的待辦。隨時查看：`sh .githooks/remind.sh`
