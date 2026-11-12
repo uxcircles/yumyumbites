@@ -2,7 +2,7 @@
 
 純靜態網站（HTML / CSS / JS），不需要建置步驟，任何靜態主機都能直接部署。
 
-> **概念設計展示**：這是由 [UX CIRCLES](https://ux-circles.com/web) 設計的改版提案，並非 Yum Yum Bites 官方網站。
+> **概念設計展示**：這是由 [UX CIRCLES](https://ux-circles.com/restaurants) 設計的改版提案，並非 Yum Yum Bites 官方網站。
 > 頁面頂端有「Concept」標示列，設為 `noindex`，`robots.txt` 也禁止收錄，避免和官方網站搶搜尋結果。
 > 如果店家正式採用：刪掉 `.concept-bar`、`<meta name="robots" content="noindex, nofollow">`，`robots.txt` 改回 `Allow: /`，並把 canonical / og 網址改成 `https://yumyumbites.co.uk/`。
 
